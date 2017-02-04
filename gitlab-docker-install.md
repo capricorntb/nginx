@@ -152,9 +152,9 @@ GitLab是一个利用Ruby on Rails开发的开源应用程序，实现一个自�
 
 系统环境：两台阿里云 ECS，操作系统 Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-86-generic x86_64)
 
-​		注册域名 gitlab.test.boxfish.cn
+​		注册域名 gitlab.test.acme.cn
 
-​		域名 *.test.boxfish.cn 的SSL 证书 
+​		域名 *.test.acme.cn 的SSL 证书 
 
 ​	（如果用自己生成的自签署证书，在后面，用 git 通过https 拉代码时，以及在登录 私有 docker 仓库时，会r报错，所以还是用有效的ssl证书较好） 
 
@@ -224,11 +224,11 @@ gitlab:
     - SMTP_HOST=smtp.163.com
     - SMTP_PORT=587
     - SMTP_USER=bignetshark
-    - SMTP_PASS=boxfish123
+    - SMTP_PASS=acme123
     - SMTP_STARTTLS=true
     - SMTP_AUTHENTICATION=login
     - GITLAB_TIMEZONE=Beijing
-    - GITLAB_HOST=gitlab.test.boxfish.cn
+    - GITLAB_HOST=gitlab.test.acme.cn
     - GITLAB_PORT=80
     - GITLAB_SSH_PORT=22
     - GITLAB_EMAIL=bignetshark@163.com
@@ -274,11 +274,11 @@ SMTP_DOMAIN=www.163.com
     - SMTP_HOST=smtp.163.com
     - SMTP_PORT=587
     - SMTP_USER=bignetshark
-    - SMTP_PASS=boxfish123
+    - SMTP_PASS=acme123
     - SMTP_STARTTLS=true
     - SMTP_AUTHENTICATION=login
     - GITLAB_TIMEZONE=Beijing
-    - GITLAB_HOST=gitlab.test.boxfish.cn
+    - GITLAB_HOST=gitlab.test.acme.cn
     - GITLAB_PORT=80
     - GITLAB_SSH_PORT=22
     - GITLAB_EMAIL=bignetshark@163.com
@@ -307,7 +307,7 @@ SMTP_DOMAIN=www.163.com
 
 1.建立 certs 目录。
 
-2.将生成好的相关域名的（此处是 test.boxfish.cn) crt 和 key 文件拷贝进去
+2.将生成好的相关域名的（此处是 test.acme.cn) crt 和 key 文件拷贝进去
 
 3.gitlab ssl证书的名称最好设为 gitlab.crt，私钥 gitlab.key. （这样不需要改动配置文件。否则，会导致 https web 服务，启动不起来。
 
@@ -346,11 +346,11 @@ gitlab:
     - SMTP_HOST=smtp.163.com
     - SMTP_PORT=587
     - SMTP_USER=bignetshark
-    - SMTP_PASS=boxfish123
+    - SMTP_PASS=acme123
     - SMTP_STARTTLS=true
     - SMTP_AUTHENTICATION=login
     - GITLAB_TIMEZONE=Beijing
-    - GITLAB_HOST=gitlab.test.boxfish.cn
+    - GITLAB_HOST=gitlab.test.acme.cn
     - GITLAB_PORT=443
     - GITLAB_SSH_PORT=22
     - GITLAB_HTTPS=true
@@ -439,15 +439,15 @@ root@node1 # docker run -d -p 5000:5000 --restart=always --name registry \
 
 ```
 # 下面将本地ubuntu 镜像 打标签：
-root@node2 # docker tag ubuntu gitlab.test.boxfish.cn:5000/test/ubuntu:latest
+root@node2 # docker tag ubuntu gitlab.test.acme.cn:5000/test/ubuntu:latest
 # 登录服务器,输入username:foo password:foo123
-root@node2 # docker login gitlab.test.boxfish.cn:5000
+root@node2 # docker login gitlab.test.acme.cn:5000
 Username :
 passord :
 #现在可以推送镜像了。
-root@node2 # docker push gitlab.test.boxfish.cn:5000/test/ubuntu:latest
+root@node2 # docker push gitlab.test.acme.cn:5000/test/ubuntu:latest
 #要查看服务器上的镜像，用以下命令：
-root@node2 # curl --cacert /etc/docker/certs.d/gitlab.test.boxfish.cn:5000/gitlab.crt  --basic --user foo:foo123 https://gitlab.test.boxfish.cn:5000/v2/_catalog
+root@node2 # curl --cacert /etc/docker/certs.d/gitlab.test.acme.cn:5000/gitlab.crt  --basic --user foo:foo123 https://gitlab.test.acme.cn:5000/v2/_catalog
 
 #执行上面命令，就会返回类似如下的镜像列表。
 
@@ -475,7 +475,7 @@ root@node2 # curl --cacert /etc/docker/certs.d/gitlab.test.boxfish.cn:5000/gitla
 ````
 * ##### 代码准备工作，把nginx项目的代码从 github 下载下来：
 
-  1. 点击 [ida/nginx](https://gitlab.test.boxfish.cn/ida/nginx/tree/master) 到 github 页面中。 
+  1. 点击 [ida/nginx](https://gitlab.test.acme.cn/ida/nginx/tree/master) 到 github 页面中。 
   2. 点击“ Download ZIP" 将整个项目文件 nginx-*.zip下载到本地.
 
   ​
@@ -487,9 +487,9 @@ root@node2 # curl --cacert /etc/docker/certs.d/gitlab.test.boxfish.cn:5000/gitla
 * #### gitlab用户注册：
 
   ```
-  流程： 在浏览器中输入 https://gitlab.test.boxfish.cn	按提示修改管理员 root 的密码，然后再注册新用户。
-  我注册了新用户：ytb,密码：boxfish123
-  然后 在浏览器中输入 https://gitlab.test.boxfish.cn	登录 ytb
+  流程： 在浏览器中输入 https://gitlab.test.acme.cn	按提示修改管理员 root 的密码，然后再注册新用户。
+  我注册了新用户：ytb,密码：acme123
+  然后 在浏览器中输入 https://gitlab.test.acme.cn	登录 ytb
   创建新项目：nginx 			
   ```
   ​	![](http://oifb0494t.bkt.clouddn.com/16-12-20/57749072-file_1482224323317_bf57.png)			
@@ -542,7 +542,7 @@ Dockerfile LICENSE    README.md  deploy.sh
 
 Initialized empty Git repository in /Users/yintb/gitlab-aliyun/nginx-master/.git/
 
-➜  nginx-master git:(master) ✗ git remote add origin https://gitlab.test.boxfish.cn/ytb/nginx.git
+➜  nginx-master git:(master) ✗ git remote add origin https://gitlab.test.acme.cn/ytb/nginx.git
 
 ➜  nginx-master git:(master) ✗ git add .
 
@@ -562,9 +562,9 @@ Initialized empty Git repository in /Users/yintb/gitlab-aliyun/nginx-master/.git
 
  ➜  nginx-master git:(master) git push -u origin master
 
-Username for 'https://gitlab.test.boxfish.cn': ytb
+Username for 'https://gitlab.test.acme.cn': ytb
 
-Password for 'https://ytb@gitlab.test.boxfish.cn':
+Password for 'https://ytb@gitlab.test.acme.cn':
 
 Counting objects: 6, done.
 
@@ -576,7 +576,7 @@ Writing objects: 100% (6/6), 1.98 KiB | 0 bytes/s, done.
 
 Total 6 (delta 0), reused 0 (delta 0)
 
-To https://gitlab.test.boxfish.cn/ytb/nginx.git
+To https://gitlab.test.acme.cn/ytb/nginx.git
 
 - [new branch]      master -> master
   Branch master set up to track remote branch master from origin.
@@ -615,9 +615,9 @@ PasswordAuthentication no
       - docker build -t $IMAGE_NAME .
     push-image-to-registry:
     script:
-      - docker tag $IMAGE_NAME gitlab.test.boxfish.cn:5000/xxx/nginx:latest
-      - docker login --username=你自己的docker仓库账号 --password=密码 gitlab.test.boxfish.cn:5000
-      - docker push gitlab.test.boxfish.cn:5000/xxx/nginx:latest
+      - docker tag $IMAGE_NAME gitlab.test.acme.cn:5000/xxx/nginx:latest
+      - docker login --username=你自己的docker仓库账号 --password=密码 gitlab.test.acme.cn:5000
+      - docker push gitlab.test.acme.cn:5000/xxx/nginx:latest
     deploy_docker:
     script:
       - ./deploy.sh
@@ -630,11 +630,11 @@ PasswordAuthentication no
   > > - push-image-to-registry:
   > >     script:
   > >
-  > >   - docker tag $IMAGE_NAME gitlab.test.boxfish.cn:5000/xxx/nginx:latest
+  > >   - docker tag $IMAGE_NAME gitlab.test.acme.cn:5000/xxx/nginx:latest
   > >
   > >
-  > >   - docker login —username=***你自己的docker仓库账号 —password=密码 ***  gitlab.test.boxfish.cn:5000
-  > >     - docker push *** gitlab.test.boxfish.cn:5000/boxfish/nginx:latest *** 
+  > >   - docker login —username=***你自己的docker仓库账号 —password=密码 ***  gitlab.test.acme.cn:5000
+  > >     - docker push *** gitlab.test.acme.cn:5000/acme/nginx:latest *** 
 
  
   ```
@@ -688,7 +688,7 @@ root@node1:~# curl -sSL https://get.docker.com/ | sh && curl -L https://packages
 
 ```
 root@node1:~# gitlab-ci-multi-runner register -n \
---url https://gitlab.test.boxfish.cn/ci \
+--url https://gitlab.test.acme.cn/ci \
 --registration-token Yfk_y3mKy3STtBtE3LSg \
 --executor shell \
 --description "My Runner"
@@ -809,7 +809,7 @@ services:
     - GITLAB_HTTPS=true
     - SSL_SELF_SIGNED=true
 
-    - GITLAB_HOST=gitlab.test.boxfish.cn
+    - GITLAB_HOST=gitlab.test.acme.cn
     - GITLAB_PORT=443
     - GITLAB_SSH_PORT=22
     - GITLAB_RELATIVE_URL_ROOT=
@@ -835,7 +835,7 @@ services:
     - SMTP_HOST=smtp.163.com
     - SMTP_PORT=587
     - SMTP_USER=bignetshark
-    - SMTP_PASS=boxfish123
+    - SMTP_PASS=acme123
     - SMTP_STARTTLS=true
     - SMTP_AUTHENTICATION=login
 ```
@@ -862,7 +862,7 @@ services:
    chmod 400 gitlab.key
    ```
 
-2. 用自己生成的自签署证书，在客户端用 git 通过https 拉代码时，会报错，`fatal: unable to access 'https://gitlab.test.boxfish.cn/ytb/txida.git/': SSL certificate problem: Invalid certificate chain` 解决方法：在客户端命令行输入： `git config --global http.sslVerify false`  取消证书验证即可。
+2. 用自己生成的自签署证书，在客户端用 git 通过https 拉代码时，会报错，`fatal: unable to access 'https://gitlab.test.acme.cn/ytb/txida.git/': SSL certificate problem: Invalid certificate chain` 解决方法：在客户端命令行输入： `git config --global http.sslVerify false`  取消证书验证即可。
 
    1. **使用自签署证书**，生成 https docker registry, 时用户在 push 时会遇到这样的错误：`x509: certificate signed by unknown authority` , 这是因为自签署的证书是由未知CA签署的，因此验证失败。
 

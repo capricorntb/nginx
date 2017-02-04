@@ -8,9 +8,9 @@ build:
     - docker build -t $IMAGE_NAME .
 push-image-to-registry:
   script:
-    - docker tag $IMAGE_NAME registry.cn-hangzhou.aliyuncs.com/boxfish/nginx:latest
+    - docker tag $IMAGE_NAME registry.cn-hangzhou.aliyuncs.com/acme/nginx:latest
     - docker login --username=**** --password=***** registry.cn-hangzhou.aliyuncs.com
-    - docker push registry.cn-hangzhou.aliyuncs.com/boxfish/nginx:latest
+    - docker push registry.cn-hangzhou.aliyuncs.com/acme/nginx:latest
 deploydocker:
   script:
     - ./deploy.sh
