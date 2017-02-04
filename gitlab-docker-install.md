@@ -492,7 +492,7 @@ root@node2 # curl --cacert /etc/docker/certs.d/gitlab.test.acme.cn:5000/gitlab.c
   然后 在浏览器中输入 https://gitlab.test.acme.cn	登录 ytb
   创建新项目：nginx 			
   ```
-  ​	![](http://oifb0494t.bkt.clouddn.com/16-12-20/57749072-file_1482224323317_bf57.png)			
+  ![](http://oifb0494t.bkt.clouddn.com/16-12-20/57749072-file_1482224323317_bf57.png)			
 
 #### 目的：
 
