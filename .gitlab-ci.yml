@@ -9,7 +9,7 @@ build:
 push-image-to-registry:
   script:
     - docker tag $IMAGE_NAME registry.cn-hangzhou.aliyuncs.com/boxfish/nginx:latest
-    - docker login --username=yintianbao@boxfish --password=Boxfish123 registry.cn-hangzhou.aliyuncs.com
+    - docker login --username=**** --password=***** registry.cn-hangzhou.aliyuncs.com
     - docker push registry.cn-hangzhou.aliyuncs.com/boxfish/nginx:latest
 deploydocker:
   script:
